@@ -7,24 +7,22 @@
 $(DL_DIR)/$(NEWLIB_SOURCE):
 	$(WGET) --passive -P $(DL_DIR) $(NEWLIB_SITE)/$(NEWLIB_SOURCE)
 
-$(NEWLIB_DIR)/.unpacked: $(DL_DIR)/$(NEWLIB_SOURCE)
+$(NEWLIB_DIR): $(DL_DIR)/$(NEWLIB_SOURCE)
 	$(NEWLIB_CAT) $(DL_DIR)/$(NEWLIB_SOURCE) | tar -C $(BUILD_DIR) -xf -
-	touch $(NEWLIB_DIR)/.unpacked
 
-$(NEWLIB_DIR)/.configured: $(NEWLIB_DIR)/.unpacked
-	(cd $(NEWLIB_DIR); \
-	./configure --target=${TARGET} \
+$(NEWLIB_DIR)_build: $(NEWLIB_DIR)
+	(mkdir -p $(NEWLIB_DIR)_build; cd $(NEWLIB_DIR)_build; \
+	$(NEWLIB_DIR)/configure --target=${TARGET} \
 			--prefix=${TARGET_DIR} \
 			--enable-target-opt-space \
 			--disable-newlib-supplied-syscalls \
 			$(TARGET_OPTS) \
-			--enable-multilib; \
-	touch .configured );
+			--enable-multilib; );
 
-newlib: gcc-bootstrap newlib-install gcc-final
+newlib: gcc newlib-install
 
-newlib-install: $(NEWLIB_DIR)/.configured
-	PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(NEWLIB_DIR) all install
+newlib-install: $(NEWLIB_DIR)_build
+	PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(NEWLIB_DIR)_build all install
 
 newlib-clean:
 	$(MAKE) -C $(NEWLIB_DIR) clean
