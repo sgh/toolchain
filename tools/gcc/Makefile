@@ -18,6 +18,7 @@ $(GCC_DIR)/.configured: $(NEWLIB_DIR)/.unpacked $(GCC_DIR)/.unpacked
 			--prefix=${TARGET_DIR} \
 			--enable-languages="c,c++" \
 			--enable-target-opt-space --with-headers=$(NEWLIB_DIR)/newlib/libc/include \
+			--with-newlib \
 			--enable-multilib; \
 	touch .configured );
 
