@@ -24,9 +24,9 @@ $(GCC_DIR)/.installed: $(GCC_DIR)/.configured
 	PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(GCC_DIR) all-gcc install-gcc
 	touch $(GCC_DIR)/.installed
 
-gcc: $(GCC_DIR)/.installed
+gcc: binutils $(GCC_DIR)/.installed
 
-gcc-install:
+gcc-install: 
 	PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(GCC_DIR) install-gcc
 
 gcc-clean:

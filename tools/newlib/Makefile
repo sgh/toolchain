@@ -23,7 +23,7 @@ $(NEWLIB_DIR)/.installed: $(NEWLIB_DIR)/.configured
 	PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(NEWLIB_DIR) all install
 	touch $(NEWLIB_DIR)/.installed
 
-newlib: $(NEWLIB_DIR)/.installed
+newlib: gcc $(NEWLIB_DIR)/.installed
 
 newlib-install:
 	PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(NEWLIB_DIR) install
