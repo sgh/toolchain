@@ -1,0 +1,7 @@
+
+* Fælles api til tools.
+	tool-unpack
+	tool-configure
+	tool-install
+	tool-clean
+	tool-distclean
