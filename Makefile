@@ -1,6 +1,7 @@
 
 # ARM-processorts
 TARGET := arm-elf
+TARGET_OPTS = --enable-interwork
 
 # Hitachi H3xx-series
 ;TARGET := h8300-hms

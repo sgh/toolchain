@@ -16,6 +16,7 @@ $(NEWLIB_DIR)/.configured: $(NEWLIB_DIR)/.unpacked
 	./configure --target=${TARGET} \
 			--prefix=${TARGET_DIR} \
 			--enable-target-opt-space \
+			$(TARGET_OPTS) \
 			--enable-multilib; \
 	touch .configured );
 
