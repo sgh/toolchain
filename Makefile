@@ -17,7 +17,7 @@ TARGET_OPTS = --enable-interwork
 
 
 WGET := wget
-MAKE := make
+MAKE := gmake
 PATCH := patch
 
 TARGETS := binutils gcc newlib 
