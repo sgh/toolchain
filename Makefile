@@ -5,7 +5,7 @@ TARGET := arm-elf
 WGET := wget
 MAKE := make
 
-TARGETS := binutils gcc newlib
+TARGETS := binutils 
 TARGETS_CLEAN:=$(patsubst %,%-clean,$(TARGETS))
 TARGETS_INSTALL:=$(patsubst %,%-install,$(TARGETS))
 
