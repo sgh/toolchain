@@ -16,7 +16,7 @@ $(GCC_DIR)_build: $(GCC_DIR) $(NEWLIB_DIR)
 	(mkdir -p $(GCC_DIR)_build; cd $(GCC_DIR)_build; \
 	$(GCC_DIR)/configure --target=${TARGET} \
 			--prefix=${TARGET_DIR} \
-			--with-headers=$(NEWLIB_DIR)/newlib/libc/include \
+			--without-headers \
 			--disable-threads \
 			--disable-__cxa_atexit \
 			--enable-languages="c,c++" \

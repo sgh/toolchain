@@ -1,6 +1,6 @@
 
 # ARM-processorts
-TARGET := arm-elf
+TARGET := arm-none-elf
 TARGET_OPTS = --enable-interwork
 
 # Hitachi H3xx-series
@@ -20,7 +20,7 @@ WGET := wget
 MAKE := gmake
 PATCH := patch
 
-TARGETS := binutils gcc newlib gdb
+TARGETS := binutils gcc gdb
 
 TARGETS_CLEAN:=$(patsubst %,%-clean,$(TARGETS))
 TARGETS_INSTALL:=$(patsubst %,%-install,$(TARGETS))
