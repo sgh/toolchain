@@ -20,7 +20,7 @@ $(NEWLIB_DIR)/.configured: $(NEWLIB_DIR)/.unpacked
 			--enable-multilib; \
 	touch .configured );
 
-newlib: gcc newlib-install
+newlib: gcc-bootstrap newlib-install gcc-final
 
 newlib-install: $(NEWLIB_DIR)/.configured
 	PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(NEWLIB_DIR) all install

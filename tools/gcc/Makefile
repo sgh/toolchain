@@ -12,21 +12,38 @@ $(GCC_DIR)/.unpacked: $(DL_DIR)/$(GCC_SOURCE)
 	$(PATCH) -p0 -d $(GCC_DIR) < $(shell pwd)/$(TOOLS_DIR)/gcc/arm-elf-multilib.patch
 	touch $(GCC_DIR)/.unpacked
 
-$(GCC_DIR)/.configured: $(NEWLIB_DIR)/.unpacked $(GCC_DIR)/.unpacked 
-	(cd $(GCC_DIR); \
-	./configure --target=${TARGET} \
+$(GCC_DIR)-bootstrap/.configured-bootstrap: $(NEWLIB_DIR)/.unpacked $(GCC_DIR)/.unpacked 
+	(mkdir -p $(GCC_DIR)-bootstrap; cd $(GCC_DIR)-bootstrap; \
+	$(GCC_DIR)/configure --target=${TARGET} \
 			--prefix=${TARGET_DIR} \
+			--without-headers \
 			--enable-languages="c,c++" \
-			--enable-target-opt-space --with-headers=$(NEWLIB_DIR)/newlib/libc/include \
-			--with-newlib \
+			--enable-target-opt-space \
 			$(TARGET_OPTS) \
 			--enable-multilib; \
-	touch .configured );
+	touch .configured-bootstrap );
 
-gcc: binutils gcc-install
+$(GCC_DIR)-final/.configured-final: $(NEWLIB_DIR)/.unpacked $(GCC_DIR)/.unpacked 
+	(mkdir -p $(GCC_DIR)-final; cd $(GCC_DIR)-final; \
+	$(GCC_DIR)/configure --target=${TARGET} \
+			--prefix=${TARGET_DIR} \
+			--with-headers=$(NEWLIB_DIR)/newlib/libc/include \
+			--enable-languages="c,c++" \
+			--enable-target-opt-space \
+			$(TARGET_OPTS) \
+			--enable-multilib; \
+	touch .configured-final );
 
-gcc-install: $(GCC_DIR)/.configured
-	PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(GCC_DIR) all-gcc install-gcc
+gcc: binutils gcc-bootstrap
+
+gcc-install: gcc-bootstrap
+
+gcc-bootstrap: $(GCC_DIR)-bootstrap/.configured-bootstrap
+	PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(GCC_DIR)-bootstrap all-gcc install-gcc
+
+gcc-final: $(GCC_DIR)-final/.configured-final
+	PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(GCC_DIR)-final all-gcc install-gcc
+
 
 gcc-clean:
 	$(MAKE) -C $(GCC_DIR) clean
