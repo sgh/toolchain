@@ -20,7 +20,7 @@ WGET := wget
 MAKE := gmake
 PATCH := patch
 
-TARGETS := binutils gcc newlib 
+TARGETS := binutils gcc newlib gdb
 
 TARGETS_CLEAN:=$(patsubst %,%-clean,$(TARGETS))
 TARGETS_INSTALL:=$(patsubst %,%-install,$(TARGETS))
