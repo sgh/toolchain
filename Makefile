@@ -1,13 +1,23 @@
 
+# ARM-processorts
 TARGET := arm-elf
-#TARGET := h8300-hms
+
+# Hitachi H3xx-series
+;TARGET := h8300-hms
+
+## Motorola
+;TARGET := m68k-bdm-elf
+
+# HC11
+;TARGET := m6811-elf
+
 
 
 WGET := wget
 MAKE := make
+PATCH := patch
 
-TARGETS :=  binutils
-
+TARGETS := binutils gcc newlib
 
 TARGETS_CLEAN:=$(patsubst %,%-clean,$(TARGETS))
 TARGETS_INSTALL:=$(patsubst %,%-install,$(TARGETS))
@@ -17,7 +27,7 @@ TARGETS_INSTALL:=$(patsubst %,%-install,$(TARGETS))
 TARGET_DIR := $(shell pwd)/$(TARGET)-tools
 BUILD_DIR := $(shell pwd)/$(TARGET)_build/
 DL_DIR := src/
-
+TOOLS_DIR := tools/
 
 all: world
 
@@ -30,7 +40,8 @@ include tools/*/Makefile
 
 
 world: $(BUILD_DIR) $(TARGETS)
-	echo "Build complete. Toolchain resides in $(TARGET_DIR)"
+	echo
+	echo "Build complete :). Toolchain resides in $(TARGET_DIR)"
 
 $(BUILD_DIR):
 	mkdir -p $@
