@@ -5,7 +5,7 @@
 #############################################################
 
 $(DL_DIR)/$(NEWLIB_SOURCE):
-	$(WGET) --passive $(DL_DIR) $(NEWLIB_SITE)/$(NEWLIB_SOURCE)
+	$(WGET) --passive -P $(DL_DIR) $(NEWLIB_SITE)/$(NEWLIB_SOURCE)
 
 $(NEWLIB_DIR)/.unpacked: $(DL_DIR)/$(NEWLIB_SOURCE)
 	$(NEWLIB_CAT) $(DL_DIR)/$(NEWLIB_SOURCE) | tar -C $(BUILD_DIR) -xf -
