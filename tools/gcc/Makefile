@@ -17,6 +17,7 @@ $(GCC_DIR)-bootstrap/.configured-bootstrap: $(NEWLIB_DIR)/.unpacked $(GCC_DIR)/.
 	$(GCC_DIR)/configure --target=${TARGET} \
 			--prefix=${TARGET_DIR} \
 			--without-headers \
+			--disable-threads \
 			--enable-languages="c,c++" \
 			--enable-target-opt-space \
 			$(TARGET_OPTS) \
@@ -28,6 +29,7 @@ $(GCC_DIR)-final/.configured-final: $(NEWLIB_DIR)/.unpacked $(GCC_DIR)/.unpacked
 	$(GCC_DIR)/configure --target=${TARGET} \
 			--prefix=${TARGET_DIR} \
 			--with-headers=$(NEWLIB_DIR)/newlib/libc/include \
+			--disable-threads \
 			--enable-languages="c,c++" \
 			--enable-target-opt-space \
 			$(TARGET_OPTS) \
