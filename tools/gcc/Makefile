@@ -26,9 +26,11 @@ $(GCC_DIR)/.installed: $(GCC_DIR)/.configured
 
 gcc: $(GCC_DIR)/.installed
 
+gcc-install:
+	PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(GCC_DIR) install-gcc
+
 gcc-clean:
-	rm -f $(TARGET_DIR)/$(GCC_TARGET_BINARY)
-	-$(MAKE) -C $(GCC_DIR) clean
+	$(MAKE) -C $(GCC_DIR) clean
 
 gcc-dirclean:
 	rm -rf $(GCC_DIR)

@@ -20,14 +20,16 @@ $(NEWLIB_DIR)/.configured: $(NEWLIB_DIR)/.unpacked $(NEWLIB_DIR)/.unpacked
 	touch .configured );
 
 $(NEWLIB_DIR)/.installed: $(NEWLIB_DIR)/.configured
-	$(MAKE) -C $(NEWLIB_DIR) all install
+	PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(NEWLIB_DIR) all install
 	touch $(NEWLIB_DIR)/.installed
 
 newlib: $(NEWLIB_DIR)/.installed
 
+newlib-install:
+	PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(NEWLIB_DIR) install
+
 newlib-clean:
-	rm -f $(TARGET_DIR)/$(NEWLIB_TARGET_BINARY)
-	-$(MAKE) -C $(NEWLIB_DIR) clean
+	$(MAKE) -C $(NEWLIB_DIR) clean
 
 newlib-dirclean:
 	rm -rf $(NEWLIB_DIR)

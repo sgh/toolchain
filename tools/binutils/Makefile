@@ -22,9 +22,11 @@ $(BINUTILS_DIR)/.installed: $(BINUTILS_DIR)/.configured
 
 binutils: $(BINUTILS_DIR)/.installed
 
+binutils-install:
+	$(MAKE) -C $(BINUTILS_DIR) install
+
 binutils-clean:
-	rm -f $(TARGET_DIR)/$(BINUTILS_TARGET_BINARY)
-	-$(MAKE) -C $(BINUTILS_DIR) clean
+	$(MAKE) -C $(BINUTILS_DIR) clean
 
 binutils-dirclean:
 	rm -rf $(BINUTILS_DIR)
