@@ -7,16 +7,20 @@
 $(DL_DIR)/$(BINUTILS_SOURCE):
 	$(WGET) -P $(DL_DIR) $(BINUTILS_SITE)/$(BINUTILS_SOURCE)
 
-$(BINUTILS_DIR): $(DL_DIR)/$(BINUTILS_SOURCE)
+$(BINUTILS_DIR)/.unpacked: $(DL_DIR)/$(BINUTILS_SOURCE)
 	$(BINUTILS_CAT) $(DL_DIR)/$(BINUTILS_SOURCE) | tar -C $(BUILD_DIR) -xf -
+	touch $(BINUTILS_DIR)/.unpacked
 
-$(BINUTILS_DIR)/.configured: $(BINUTILS_DIR)
+$(BINUTILS_DIR)/.configured: $(BINUTILS_DIR)/.unpacked
 	(cd $(BINUTILS_DIR); \
 	./configure --target=${TARGET} --prefix=${TARGET_DIR} --enable-target-opt-space --enable-multilib; \
+	$(MAKE) -C $(BINUTILS_DIR);  \
 	touch .configured );
-	$(MAKE) -C $(BINUTILS_DIR) 
 
-binutils: $(BINUTILS_DIR)/.configured
+binutils: binutils-install
+
+binutils-install: $(BINUTILS_DIR)/.configured
+	$(MAKE) -C $(BINUTILS_DIR) all install
 
 binutils-clean:
 	$(MAKE) -C $(BINUTILS_DIR) clean

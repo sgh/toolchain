@@ -1,11 +1,12 @@
 
 TARGET := arm-elf
+#TARGET := h8300-hms
 
 
 WGET := wget
 MAKE := make
 
-TARGETS := newlib gcc binutils
+TARGETS :=  binutils
 
 
 TARGETS_CLEAN:=$(patsubst %,%-clean,$(TARGETS))
