@@ -13,7 +13,6 @@ TARGET_OPTS = --enable-interwork
 ;TARGET := m6811-elf
 
 
-CC := gcc
 WGET := wget
 MAKE := make
 PATCH := patch
