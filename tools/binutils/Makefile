@@ -12,9 +12,7 @@ $(BINUTILS_DIR)/.unpacked: $(DL_DIR)/$(BINUTILS_SOURCE)
 	touch $(BINUTILS_DIR)/.unpacked
 
 $(BINUTILS_DIR)/.compiled: binutils-configure
-	(cd $(BINUTILS_DIR); \
-	./configure --target=${TARGET} --prefix=${TARGET_DIR} --enable-target-opt-space --enable-multilib; \
-	touch .configured );
+	$(MAKE) -C $(BINUTILS_DIR) all 
 
 $(BINUTILS_DIR)/.configured: binutils-unpack
 	(cd $(BINUTILS_DIR); \
@@ -23,15 +21,15 @@ $(BINUTILS_DIR)/.configured: binutils-unpack
 
 $(BINUTILS_DIR)/.compiled: binutils-configure
 
-$(BINUTILS_DIR)/.intalled: binutils-compile
+$(BINUTILS_DIR)/.installed: binutils-compile
 	$(MAKE) -C $(BINUTILS_DIR) all 
 
 
 binutils: binutils-install
 
-binutils-unpack: $(DL_DIR)/$(BINUTILS_SOURCE)
-binutils-configure: $(BINUTILS_DIR)/.unpacked
-binutils-compile: $(BINUTILS_DIR)/.configured
+binutils-unpack: $(BINUTILS_DIR)/.unpacked
+binutils-configure: $(BINUTILS_DIR)/.configured
+binutils-compile: $(BINUTILS_DIR)/.compiled
 binutils-install: $(BINUTILS_DIR)/.installed
 
 
