@@ -12,6 +12,9 @@ TARGET_OPTS = --enable-interwork
 # HC11
 ;TARGET := m6811-elf
 
+# MIPS
+;TARGET := mips
+
 
 WGET := wget
 MAKE := make
