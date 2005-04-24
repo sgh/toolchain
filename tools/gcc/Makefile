@@ -5,7 +5,7 @@
 #############################################################
 
 $(DL_DIR)/$(GCC_SOURCE):
-	$(WGET) -P $(DL_DIR) $(GCC_SITE)/$(GCC_SOURCE)
+	$(WGET) --passive -P $(DL_DIR) $(GCC_SITE)/$(GCC_SOURCE)
 
 $(GCC_DIR): $(DL_DIR)/$(GCC_SOURCE)
 	$(GCC_CAT) $(DL_DIR)/$(GCC_SOURCE) | tar -C $(BUILD_DIR) -xf -
