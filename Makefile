@@ -17,10 +17,9 @@ TARGET_OPTS = --enable-interwork
 
 
 WGET := wget
-MAKE := gmake
 PATCH := patch
 
-TARGETS := binutils gcc gdb
+TARGETS := binutils gcc newlib
 
 TARGETS_CLEAN:=$(patsubst %,%-clean,$(TARGETS))
 TARGETS_INSTALL:=$(patsubst %,%-install,$(TARGETS))
