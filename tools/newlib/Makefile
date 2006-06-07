@@ -12,12 +12,14 @@ $(NEWLIB_DIR): $(DL_DIR)/$(NEWLIB_SOURCE)
 
 $(NEWLIB_DIR)_build: $(NEWLIB_DIR)
 	(mkdir -p $(NEWLIB_DIR)_build; cd $(NEWLIB_DIR)_build; \
+	FLAGS_FOR_TARGET="-ffunction-sections -fdata-sections -Wl,--gc-sections" \
 	$(NEWLIB_DIR)/configure --target=${TARGET} \
 			--prefix=${TARGET_DIR} \
-			--enable-target-opt-space \
 			--disable-newlib-supplied-syscalls \
+			--enable-target-opt-space \
 			$(TARGET_OPTS) \
 			--enable-multilib; );
+
 
 newlib: gcc newlib-install
 
