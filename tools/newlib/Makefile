@@ -12,7 +12,6 @@ $(NEWLIB_DIR): $(DL_DIR)/$(NEWLIB_SOURCE)
 
 $(NEWLIB_DIR)_build: $(NEWLIB_DIR)
 	(mkdir -p $(NEWLIB_DIR)_build; cd $(NEWLIB_DIR)_build; \
-	FLAGS_FOR_TARGET="-ffunction-sections -fdata-sections -Wl,--gc-sections" \
 	$(NEWLIB_DIR)/configure --target=${TARGET} \
 			--prefix=${TARGET_DIR} \
 			--disable-newlib-supplied-syscalls \
