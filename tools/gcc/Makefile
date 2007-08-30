@@ -20,7 +20,6 @@ $(GCC_DIR)_build: $(GCC_DIR) $(NEWLIB_DIR)
 			--disable-threads \
 			--disable-__cxa_atexit \
 			--enable-languages="c,c++" \
-			--enable-target-opt-space \
 			$(TARGET_OPTS) \
 			--enable-multilib );
 

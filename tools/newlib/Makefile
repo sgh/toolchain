@@ -15,7 +15,6 @@ $(NEWLIB_DIR)_build: $(NEWLIB_DIR)
 	$(NEWLIB_DIR)/configure --target=${TARGET} \
 			--prefix=${TARGET_DIR} \
 			--disable-newlib-supplied-syscalls \
-			--enable-target-opt-space \
 			$(TARGET_OPTS) \
 			--enable-multilib; );
 
