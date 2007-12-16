@@ -13,8 +13,12 @@ $(NEWLIB_DIR): $(DL_DIR)/$(NEWLIB_SOURCE)
 $(NEWLIB_DIR)_build: $(NEWLIB_DIR)
 	(mkdir -p $(NEWLIB_DIR)_build; cd $(NEWLIB_DIR)_build; \
 	$(NEWLIB_DIR)/configure --target=${TARGET} \
+			--host=$(HOST) \
+			--build=i686-linux-gnu \
 			--prefix=${TARGET_DIR} \
 			--disable-newlib-supplied-syscalls \
+			--disable-newlib-mb \
+			--disable-newlib-atexit-alloc \
 			$(TARGET_OPTS) \
 			--enable-multilib; );
 

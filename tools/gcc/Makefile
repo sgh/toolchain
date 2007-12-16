@@ -15,6 +15,8 @@ $(GCC_DIR): $(DL_DIR)/$(GCC_SOURCE)
 $(GCC_DIR)_build: $(GCC_DIR) $(NEWLIB_DIR) 
 	(mkdir -p $(GCC_DIR)_build; cd $(GCC_DIR)_build; \
 	$(GCC_DIR)/configure --target=${TARGET} \
+			--host=$(HOST) \
+			--build=i686-linux-gnu \
 			--prefix=${TARGET_DIR} \
 			--without-headers \
 			--disable-threads \

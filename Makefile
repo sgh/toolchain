@@ -1,4 +1,8 @@
 
+## Host environment
+HOST = i686-linux-gnu
+#HOST = i586-mingw32msvc-
+
 # ARM-processorts
 TARGET := arm-elf
 TARGET_OPTS = --enable-interwork
@@ -26,8 +30,8 @@ TARGETS_INSTALL:=$(patsubst %,%-install,$(TARGETS))
 
 .SILENT: world
 
-TARGET_DIR := $(shell pwd)/$(TARGET)-tools
-BUILD_DIR := $(shell pwd)/$(TARGET)_build/
+TARGET_DIR := $(shell pwd)/$(HOST)-$(TARGET)-tools
+BUILD_DIR := $(shell pwd)/$(HOST)-$(TARGET)_build/
 DL_DIR := src/
 TOOLS_DIR := tools/
 
