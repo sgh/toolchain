@@ -25,7 +25,7 @@ $(BINUTILS_DIR)_build: $(BINUTILS_DIR)
 binutils: binutils-install
 
 binutils-install: $(BINUTILS_DIR)_build
-	$(MAKE) -C $(BINUTILS_DIR)_build all install
+	$(MAKE) -C $(BINUTILS_DIR)_build all install MAKEINFO=makeinfo
 
 binutils-clean:
 	$(MAKE) -C $(BINUTILS_DIR)_build clean
