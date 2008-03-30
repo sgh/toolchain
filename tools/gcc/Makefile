@@ -9,11 +9,10 @@ $(DL_DIR)/$(GCC_SOURCE):
 
 $(GCC_DIR): $(DL_DIR)/$(GCC_SOURCE) $(NEWLIB_DIR)
 	$(GCC_CAT) $(DL_DIR)/$(GCC_SOURCE) | tar -C $(BUILD_DIR) -xf -
-	#$(PATCH) -p0 -d $(GCC_DIR) < $(shell pwd)/$(TOOLS_DIR)/gcc/arm-elf-multilib.patch
 	mkdir -p $(TARGET_DIR)/arm-elf/include
 	cp -r $(NEWLIB_DIR)/newlib/libc/include/* $(TARGET_DIR)/arm-elf/include/                                                       
-	cp /home/sgh/t-arm-elf $(GCC_DIR)/gcc/config/arm/t-arm-elf
-	cp /home/sgh/configure.ac $(GCC_DIR)/libstdc++-v3/configure.ac
+	$(PATCH) -p0 -d $(GCC_DIR) < $(shell pwd)/$(TOOLS_DIR)/gcc/arm-elf-multilib.patch-gcc4.3.0
+	$(PATCH) -p0 -d $(GCC_DIR) < $(shell pwd)/$(TOOLS_DIR)/gcc/libstdc-configure.ac.patch-gcc4.3.0
 	( cd $(GCC_DIR)/libstdc++-v3; autoconf )
 	mkdir -p $(GCC_DIR)_build
 
