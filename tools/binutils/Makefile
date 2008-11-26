@@ -20,6 +20,7 @@ $(BINUTILS_DIR)_build: $(BINUTILS_DIR)
 		--prefix=${TARGET_DIR} \
 		--enable-target-opt-space \
 		$(TARGET_OPTS) \
+		--disable-werror \
 		--enable-multilib; );
 
 binutils: binutils-install
