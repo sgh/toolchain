@@ -15,6 +15,7 @@ $(GDB_DIR)_build: $(GDB_DIR)
 	$(GDB_DIR)/configure --target=${TARGET} \
 			--prefix=${TARGET_DIR} \
 			--enable-target-opt-space \
+			--disable-werror \
 			$(TARGET_OPTS) \
 			--enable-multilib; );
 
