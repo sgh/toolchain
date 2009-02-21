@@ -13,7 +13,7 @@ $(GCC_DIR): $(DL_DIR)/$(GCC_SOURCE) $(NEWLIB_DIR)
 	cp -r $(NEWLIB_DIR)/newlib/libc/include/* $(TARGET_DIR)/arm-elf/include/                                                       
 	$(PATCH) -p0 -d $(GCC_DIR) < $(shell pwd)/$(TOOLS_DIR)/gcc/arm-elf-multilib.patch-gcc4.3.0
 	#$(PATCH) -p0 -d $(GCC_DIR) < $(shell pwd)/$(TOOLS_DIR)/gcc/libstdc-configure.ac.patch-gcc4.3.0
-	( cd $(GCC_DIR)/libstdc++-v3; autoconf )
+	#( cd $(GCC_DIR)/libstdc++-v3; autoconf )
 	mkdir -p $(GCC_DIR)_build
 
 $(GCC_DIR)_build: $(GCC_DIR)
@@ -38,6 +38,10 @@ gcc-install: $(GCC_DIR)_build
 #PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(GCC_DIR)_build all-gcc all-target-libgcc install-gcc install-target-libgcc
 	PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(GCC_DIR)_build 
 	PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(GCC_DIR)_build install
+	strip ${TARGET_DIR}/libexec/gcc/arm-elf/4.3.3/cc1
+	strip ${TARGET_DIR}/libexec/gcc/arm-elf/4.3.3/cc1plus
+	strip ${TARGET_DIR}/libexec/gcc/arm-elf/4.3.3/cc1plus
+	ls ${TARGET_DIR}/bin | grep -v "arm-elf-gccbug" | xargs -i strip ${TARGET_DIR}/bin/{}
 
 gcc-clean:
 	$(MAKE) -C $(GCC_DIR)_build clean
