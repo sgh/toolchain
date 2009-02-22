@@ -38,10 +38,6 @@ gcc-install: $(GCC_DIR)_build
 #PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(GCC_DIR)_build all-gcc all-target-libgcc install-gcc install-target-libgcc
 	PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(GCC_DIR)_build 
 	PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(GCC_DIR)_build install
-	strip ${TARGET_DIR}/libexec/gcc/arm-elf/4.3.3/cc1
-	strip ${TARGET_DIR}/libexec/gcc/arm-elf/4.3.3/cc1plus
-	strip ${TARGET_DIR}/libexec/gcc/arm-elf/4.3.3/cc1plus
-	ls ${TARGET_DIR}/bin | grep -v "arm-elf-gccbug" | xargs -i strip ${TARGET_DIR}/bin/{}
 
 gcc-clean:
 	$(MAKE) -C $(GCC_DIR)_build clean

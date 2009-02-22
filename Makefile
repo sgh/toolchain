@@ -46,6 +46,10 @@ include tools/*/Makefile
 
 
 world: $(BUILD_DIR) $(TARGETS)
+	echo "Stripping toolchain"
+	ls ${TARGET_DIR}/bin | grep -v "arm-elf-gccbug" | xargs -i strip ${TARGET_DIR}/bin/{}
+	strip ${TARGET_DIR}/libexec/gcc/arm-elf/*/cc1
+	strip ${TARGET_DIR}/libexec/gcc/arm-elf/*/cc1plus
 	echo
 	echo "Build complete :). Toolchain resides in $(TARGET_DIR)"
 
