@@ -1,9 +1,9 @@
 
 ## Host environment
-HOST = i686-linux-gnu
+#HOST = i686-linux-gnu
 #HOST = i586-mingw32msvc
 
-# ARM-processorts
+# ARM-processors
 TARGET := arm-elf
 TARGET_OPTS = --enable-interwork
 
