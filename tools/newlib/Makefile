@@ -20,7 +20,7 @@ $(NEWLIB_DIR)_build: $(NEWLIB_DIR)
 			--disable-newlib-mb \
 			--disable-newlib-atexit-alloc \
 			$(TARGET_OPTS) \
-			--enable-multilib; );
+			--enable-multilib STRING_ONLY=1; );
 
 
 newlib: gcc newlib-install
