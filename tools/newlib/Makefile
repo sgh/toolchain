@@ -20,13 +20,14 @@ $(NEWLIB_DIR)_build: $(NEWLIB_DIR)
 			--disable-newlib-mb \
 			--disable-newlib-atexit-alloc \
 			$(TARGET_OPTS) \
-			--enable-multilib STRING_ONLY=1; );
+			--enable-multilib; );
 
 
 newlib: gcc newlib-install
 
 newlib-install: $(NEWLIB_DIR)_build
-	PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -C $(NEWLIB_DIR)_build all install
+	PATH=$$PATH:$(TARGET_DIR)/bin CFLAGS=-DSTRING_ONLY $(MAKE) -C $(NEWLIB_DIR)_build all
+	$(MAKE) -C $(NEWLIB_DIR)_build install
 
 newlib-clean:
 	$(MAKE) -C $(NEWLIB_DIR) clean
