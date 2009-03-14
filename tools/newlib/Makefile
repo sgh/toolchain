@@ -26,7 +26,7 @@ $(NEWLIB_DIR)_build: $(NEWLIB_DIR)
 newlib: gcc newlib-install
 
 newlib-install: $(NEWLIB_DIR)_build
-	PATH=$$PATH:$(TARGET_DIR)/bin CFLAGS=-DSTRING_ONLY $(MAKE) -C $(NEWLIB_DIR)_build all
+	PATH=$(TARGET_DIR)/bin:$$PATH CFLAGS=-DSTRING_ONLY $(MAKE) -C $(NEWLIB_DIR)_build all
 	$(MAKE) -C $(NEWLIB_DIR)_build install
 
 newlib-clean:
