@@ -12,6 +12,7 @@ $(NEWLIB_DIR): $(DL_DIR)/$(NEWLIB_SOURCE)
 
 $(NEWLIB_DIR)_build: $(NEWLIB_DIR)
 	(mkdir -p $(NEWLIB_DIR)_build; cd $(NEWLIB_DIR)_build; \
+	CC_FOR_TARGET=${TARGET}-gcc \
 	$(NEWLIB_DIR)/configure --target=${TARGET} \
 			--host=$(HOST) \
 			--build=i686-linux-gnu \
@@ -26,7 +27,7 @@ $(NEWLIB_DIR)_build: $(NEWLIB_DIR)
 newlib: gcc newlib-install
 
 newlib-install: $(NEWLIB_DIR)_build
-	PATH=$(TARGET_DIR)/bin:$$PATH CFLAGS=-DSTRING_ONLY $(MAKE) -C $(NEWLIB_DIR)_build all
+	PATH=$(TARGET_DIR)/bin:$$PATH CFLAGS="-DSTRING_ONLY -DMALLOC_PROVIDED" $(MAKE) -C $(NEWLIB_DIR)_build all
 	$(MAKE) -C $(NEWLIB_DIR)_build install
 
 newlib-clean:
