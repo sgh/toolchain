@@ -10,8 +10,8 @@ $(DL_DIR)/$(NEWLIB_SOURCE):
 $(NEWLIB_DIR): $(DL_DIR)/$(NEWLIB_SOURCE)
 	$(NEWLIB_CAT) $(DL_DIR)/$(NEWLIB_SOURCE) | tar -C $(BUILD_DIR) -xf -
 
-$(NEWLIB_DIR)_build: $(NEWLIB_DIR)
-	(mkdir -p $(NEWLIB_DIR)_build; cd $(NEWLIB_DIR)_build; \
+newlib_configure: $(NEWLIB_DIR)
+	(cd $(NEWLIB_DIR); \
 	CC_FOR_TARGET=${TARGET}-gcc \
 	$(NEWLIB_DIR)/configure --target=${TARGET} \
 			--host=$(HOST) \
@@ -26,9 +26,9 @@ $(NEWLIB_DIR)_build: $(NEWLIB_DIR)
 
 newlib: gcc newlib-install
 
-newlib-install: $(NEWLIB_DIR)_build
-	PATH=$(TARGET_DIR)/bin:$$PATH CFLAGS="-DSTRING_ONLY -DMALLOC_PROVIDED" $(MAKE) -C $(NEWLIB_DIR)_build all
-	$(MAKE) -C $(NEWLIB_DIR)_build install
+newlib-install: newlib_configure
+	PATH=$(TARGET_DIR)/bin:$$PATH CFLAGS="-DSTRING_ONLY -DMALLOC_PROVIDED" $(MAKE) -C $(NEWLIB_DIR) all
+	$(MAKE) -C $(NEWLIB_DIR) install
 
 newlib-clean:
 	$(MAKE) -C $(NEWLIB_DIR) clean

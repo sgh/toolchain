@@ -10,10 +10,9 @@ $(DL_DIR)/$(BINUTILS_SOURCE):
 $(BINUTILS_DIR): $(DL_DIR)/$(BINUTILS_SOURCE)
 	$(BINUTILS_CAT) $(DL_DIR)/$(BINUTILS_SOURCE) | tar -C $(BUILD_DIR) -xf -
 	$(PATCH) -p1 -d $(BINUTILS_DIR) < $(shell pwd)/$(TOOLS_DIR)/binutils/elf32-arm.c.diff
-	mkdir -p $(BINUTILS_DIR)_build
 
-$(BINUTILS_DIR)_build: $(BINUTILS_DIR)
-	(cd $(BINUTILS_DIR)_build; \
+binutils_configure: $(BINUTILS_DIR)
+	(cd $(BINUTILS_DIR); \
 	$(BINUTILS_DIR)/configure \
 		--host=$(HOST) \
 		--build=i686-linux-gnu \
@@ -26,12 +25,11 @@ $(BINUTILS_DIR)_build: $(BINUTILS_DIR)
 
 binutils: binutils-install
 
-binutils-install: $(BINUTILS_DIR)_build
-	$(MAKE) -C $(BINUTILS_DIR)_build all install MAKEINFO=makeinfo
+binutils-install: binutils_configure 
+	$(MAKE) -C $(BINUTILS_DIR) all install MAKEINFO=makeinfo
 
 binutils-clean:
-	$(MAKE) -C $(BINUTILS_DIR)_build clean
+	$(MAKE) -C $(BINUTILS_DIR) clean
 
 binutils-dirclean:
 	rm -rf $(BINUTILS_DIR)
-	rm -rf $(BINUTILS_DIR)_build
