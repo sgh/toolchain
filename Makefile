@@ -2,6 +2,7 @@
 ## Host environment
 HOST = i686-linux-gnu
 #HOST = i586-mingw32msvc
+HOST_CPUS = 2
 
 # ARM-processors
 TARGET := arm-elf
