@@ -9,7 +9,7 @@ $(DL_DIR)/$(BINUTILS_SOURCE):
 
 $(BINUTILS_DIR): $(DL_DIR)/$(BINUTILS_SOURCE)
 	$(BINUTILS_CAT) $(DL_DIR)/$(BINUTILS_SOURCE) | tar -C $(BUILD_DIR) -xf -
-	$(PATCH) -p1 -d $(BINUTILS_DIR) < $(shell pwd)/$(TOOLS_DIR)/binutils/elf32-arm.c.diff
+#	$(PATCH) -p1 -d $(BINUTILS_DIR) < $(shell pwd)/$(TOOLS_DIR)/binutils/elf32-arm.c.diff
 
 binutils_configure: $(BINUTILS_DIR)
 	(cd $(BINUTILS_DIR); \
