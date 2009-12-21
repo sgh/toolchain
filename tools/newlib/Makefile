@@ -9,7 +9,7 @@ $(DL_DIR)/$(NEWLIB_SOURCE):
 
 $(NEWLIB_DIR): $(DL_DIR)/$(NEWLIB_SOURCE)
 	$(NEWLIB_CAT) $(DL_DIR)/$(NEWLIB_SOURCE) | tar -C $(BUILD_DIR) -xf -
-	$(PATCH) -p0 -d $(NEWLIB_DIR) < $(shell pwd)/$(TOOLS_DIR)/newlib/binutils-2.20.patch
+#	$(PATCH) -p0 -d $(NEWLIB_DIR) < $(shell pwd)/$(TOOLS_DIR)/newlib/binutils-2.20.patch
 
 
 newlib_configure: $(NEWLIB_DIR)
