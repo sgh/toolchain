@@ -29,7 +29,7 @@ newlib_configure: $(NEWLIB_DIR)
 newlib: gcc newlib-install
 
 newlib-install: newlib_configure
-	( export PATH=$(TARGET_DIR)/bin:$$PATH ; CFLAGS="-DSTRING_ONLY -DMALLOC_PROVIDED" $(MAKE) -j 2 -C $(NEWLIB_DIR) all )
+	( export PATH=$(TARGET_DIR)/bin:$$PATH ; CFLAGS="-DSTRING_ONLY -DMALLOC_PROVIDED" $(MAKE) -j ${HOST_CPUS} -C $(NEWLIB_DIR) all )
 	( export PATH=$(TARGET_DIR)/bin:$$PATH ; $(MAKE) -C $(NEWLIB_DIR) install )
 
 newlib-clean:
