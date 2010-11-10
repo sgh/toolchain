@@ -36,7 +36,7 @@ gcc: binutils gcc-install
 
 gcc-install: $(GCC_DIR)_build
 #PATH=$$PATH:$(TARGET_DIR)/bin $(MAKE) -j 2 -C $(GCC_DIR)_build all-gcc all-target-libgcc install-gcc install-target-libgcc
-	PATH=$(TARGET_DIR)/bin:$$PATH $(MAKE) -C $(GCC_DIR)_build 
+	PATH=$(TARGET_DIR)/bin:$$PATH $(MAKE) -j ${HOST_CPUS} -C $(GCC_DIR)_build 
 	PATH=$(TARGET_DIR)/bin:$$PATH $(MAKE) -C $(GCC_DIR)_build install
 
 gcc-clean:

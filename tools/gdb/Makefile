@@ -22,7 +22,7 @@ $(GDB_DIR)_build: $(GDB_DIR)
 gdb: gdb-install
 
 gdb-install: $(GDB_DIR)_build
-	PATH=$(TARGET_DIR)/bin:$$PATH $(MAKE) -j 2 -C $(GDB_DIR)_build all 
+	PATH=$(TARGET_DIR)/bin:$$PATH $(MAKE) -j ${HOST_CPUS} -C $(GDB_DIR)_build all 
 	PATH=$(TARGET_DIR)/bin:$$PATH $(MAKE) -C $(GDB_DIR)_build install
 
 gdb-clean:
