@@ -28,6 +28,7 @@ $(GCC_DIR)_build: $(GCC_DIR)
 			--enable-languages="c,c++" \
 			--disable-nls \
 			--with-newlib \
+			--with-system-zlib \
 			--with-headers=$(NEWLIB_DIR)/newlib/libc/include \
 			$(TARGET_OPTS) \
 			--enable-multilib );
