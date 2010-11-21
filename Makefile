@@ -2,7 +2,7 @@
 ## Host environment
 HOST = i686-linux-gnu
 #HOST = i586-mingw32msvc
-HOST_CPUS = `cat /proc/cpuinfo | grep "physical id" | wc -l`
+HOST_CPUS = `getconf _NPROCESSORS_ONLN`
 
 # ARM-processors
 TARGET := arm-elf
