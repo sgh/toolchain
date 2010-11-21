@@ -14,6 +14,7 @@ $(GCC_DIR): $(DL_DIR)/$(GCC_SOURCE) $(NEWLIB_DIR)
 	$(PATCH) -p0 -d $(GCC_DIR) < $(shell pwd)/$(TOOLS_DIR)/gcc/arm-elf-multilib.patch-gcc4.3.0
 	#$(PATCH) -p0 -d $(GCC_DIR) < $(shell pwd)/$(TOOLS_DIR)/gcc/libstdc-configure.ac.patch-gcc4.3.0
 	#( cd $(GCC_DIR)/libstdc++-v3; autoconf )
+	touch $(GCC_DIR)
 	mkdir -p $(GCC_DIR)_build
 
 $(GCC_DIR)_build: $(GCC_DIR)

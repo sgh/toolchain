@@ -9,6 +9,7 @@ $(DL_DIR)/$(GDB_SOURCE):
 
 $(GDB_DIR): $(DL_DIR)/$(GDB_SOURCE)
 	$(GDB_CAT) $(DL_DIR)/$(GDB_SOURCE) | tar -C $(BUILD_DIR) -xf -
+	touch $(GDB_DIR)
 
 $(GDB_DIR)_build: $(GDB_DIR)
 	(mkdir -p $(GDB_DIR)_build; cd $(GDB_DIR)_build; \
