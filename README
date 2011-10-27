@@ -1,1 +1,7 @@
 To generate an ARM cross-compiler just run 'make'
+
+To build on a ubuntu-system, the following packages are necessary:
+* texinfo
+* libmpfr-dev
+* libmpc-dev
+* libncurses5-dev
