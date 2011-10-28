@@ -41,6 +41,7 @@ world: $(BUILD_DIR) $(TARGETS)
 	ls ${TARGET_DIR}/bin | grep -v "$(TARGET)-gccbug" | xargs -i strip ${TARGET_DIR}/bin/{}
 	strip ${TARGET_DIR}/libexec/gcc/$(TARGET)/*/cc1
 	strip ${TARGET_DIR}/libexec/gcc/$(TARGET)/*/cc1plus
+	strip ${TARGET_DIR}/libexec/gcc/$(TARGET)/*/lto1
 	echo
 	echo "Build complete :). Toolchain resides in $(TARGET_DIR)"
 
