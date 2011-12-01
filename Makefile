@@ -38,11 +38,11 @@ include tools/*/Makefile
 versionfile:
 	mkdir -p ${TARGET_DIR}
 	( \
-	echo -n "Metadata: " ; git describe ; \
-	echo "GCC: " ${GCC_VER} ; \
-	echo "Binutils " ${BINUTILS_VER} ; \
-	echo "Newlib: " ${NEWLIB_VER} ; \
-	echo "GDB: " ${GDB_VER} \
+	echo -n "Metadata : "; git describe ; \
+	echo    "GCC      : "${GCC_VER} ; \
+	echo    "Binutils : "${BINUTILS_VER} ; \
+	echo    "Newlib   : "${NEWLIB_VER} ; \
+	echo    "GDB      : "${GDB_VER} \
 	) > ${TARGET_DIR}/README
 
 world: $(BUILD_DIR) versionfile $(TARGETS)
