@@ -5,3 +5,4 @@ To build on a ubuntu-system, the following packages are necessary:
 * libmpfr-dev
 * libmpc-dev
 * libncurses5-dev
+* libmpc-dev
