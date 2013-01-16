@@ -23,10 +23,10 @@ $(GCC_DIR)_build: $(GCC_DIR)
 			--build=i686-linux-gnu \
 			--prefix=${TARGET_DIR} \
 			--without-headers \
-			--disable-threads \
 			--disable-__cxa_atexit \
 			--enable-languages="c,c++" \
 			--disable-nls \
+			--enable-obsolete \
 			--with-newlib \
 			--with-system-zlib \
 			--with-headers=$(NEWLIB_DIR)/newlib/libc/include \
