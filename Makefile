@@ -38,7 +38,7 @@ include tools/*/Makefile
 versionfile:
 	mkdir -p ${TARGET_DIR}
 	( \
-	echo -n "Metadata : "; git describe ; \
+	echo -n "Metadata : "; git describe --dirty ; \
 	echo    "GCC      : "${GCC_VER} ; \
 	echo    "Binutils : "${BINUTILS_VER} ; \
 	echo    "Newlib   : "${NEWLIB_VER} ; \
