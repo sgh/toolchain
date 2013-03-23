@@ -11,8 +11,6 @@ $(GCC_DIR): $(DL_DIR)/$(GCC_SOURCE) $(NEWLIB_DIR)
 	$(GCC_CAT) $(DL_DIR)/$(GCC_SOURCE) | tar -C $(BUILD_DIR) -xf -
 	mkdir -p $(TARGET_DIR)/arm-elf/include
 	cp -r $(NEWLIB_DIR)/newlib/libc/include/* $(TARGET_DIR)/arm-elf/include/                                                       
-	$(PATCH) -p1 -d $(GCC_DIR) < $(shell pwd)/$(TOOLS_DIR)/gcc/arm-elf-multilib.patch
-	$(PATCH) -p1 -d $(GCC_DIR) < $(shell pwd)/$(TOOLS_DIR)/gcc/0001-Avoid-compiling-with-fexceptions.patch
 	touch $(GCC_DIR)
 	mkdir -p $(GCC_DIR)_build
 
