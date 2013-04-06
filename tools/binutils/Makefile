@@ -14,8 +14,6 @@ $(BINUTILS_DIR): $(DL_DIR)/$(BINUTILS_SOURCE)
 binutils_configure: $(BINUTILS_DIR)
 	(cd $(BINUTILS_DIR); \
 	$(BINUTILS_DIR)/configure \
-		--host=$(HOST) \
-		--build=i686-linux-gnu \
 		--target=${TARGET} \
 		--prefix=${TARGET_DIR} \
 		--enable-target-opt-space \

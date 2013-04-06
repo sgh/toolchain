@@ -17,8 +17,6 @@ newlib_configure: $(NEWLIB_DIR)
 	(cd $(NEWLIB_DIR); \
 	CC_FOR_TARGET=${TARGET}-gcc \
 	$(NEWLIB_DIR)/configure --target=${TARGET} \
-			--host=$(HOST) \
-			--build=i686-linux-gnu \
 			--prefix=${TARGET_DIR} \
 			--disable-newlib-supplied-syscalls \
 			--disable-newlib-mb \
