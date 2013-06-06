@@ -57,3 +57,10 @@ world: $(BUILD_DIR) versionfile $(TARGETS)
 $(BUILD_DIR):
 	mkdir -p $@
 
+debian:
+	mkdir -p debs
+	mkdir -p pkg/opt/${TARGET}-tools
+	cp -a ${TARGET_DIR} pkg/opt/${TARGET}-tools/
+	cp -a DEBIAN pkg/
+	dpkg-deb -b pkg debs
+	rm -rf pkg
