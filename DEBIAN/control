@@ -1,5 +1,6 @@
 Package: arm-eabi-tools
 Version: 3.1
+Maintainer: Søren Holm <sgh@sgh.dk>
 Architecture: i386
 Depends: libmpc3, libmpfr
 Description: GCC newlib ARM-toolchain including GDB.
