@@ -1,0 +1,57 @@
+From e54fef47faa3cd35bfc5bd96abe8b41f61001276 Mon Sep 17 00:00:00 2001
+From: Jeff Johnston <jjohnstn@redhat.com>
+Date: Fri, 10 Jan 2014 23:04:01 +0000
+Subject: [PATCH 2/2] 2014-01-10  Jeff Johnston  <jjohnstn@redhat.com>
+
+        * arm/configure.in: Revert previous fix and change host_makefile_frag
+        to calculate the absolute location of srcdir/../config/default.mh.
+        * arm/configure: Regenerated.
+---
+ libgloss/ChangeLog        | 6 ++++++
+ libgloss/arm/configure    | 2 +-
+ libgloss/arm/configure.in | 2 +-
+ 3 files changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/libgloss/ChangeLog b/libgloss/ChangeLog
+index 44fd178..5920a23 100644
+--- a/libgloss/ChangeLog
++++ b/libgloss/ChangeLog
+@@ -1,3 +1,9 @@
++2014-01-10  Jeff Johnston  <jjohnstn@redhat.com>
++
++	* arm/configure.in: Revert previous fix and change host_makefile_frag
++	to calculate the absolute location of srcdir/../config/default.mh.
++	* arm/configure: Regenerated.
++
+ 2014-01-07  Jeff Johnston  <jjohnstn@redhat.com>
+ 
+ 	* arm/configure.in: Fix host_makefile_frag to use ac_abs_srcdir.
+diff --git a/libgloss/arm/configure b/libgloss/arm/configure
+index cdad535..032f0aa 100644
+--- a/libgloss/arm/configure
++++ b/libgloss/arm/configure
+@@ -2541,7 +2541,7 @@ esac
+ 
+ 
+ 
+-host_makefile_frag=${ac_abs_srcdir}/../config/default.mh
++host_makefile_frag=`cd $srcdir/../config;pwd`/default.mh
+ 
+ host_makefile_frag_path=$host_makefile_frag
+ 
+diff --git a/libgloss/arm/configure.in b/libgloss/arm/configure.in
+index 4431cd4..d9408ad 100644
+--- a/libgloss/arm/configure.in
++++ b/libgloss/arm/configure.in
+@@ -59,7 +59,7 @@ esac
+ 
+ AC_SUBST(objtype)
+ 
+-host_makefile_frag=${ac_abs_srcdir}/../config/default.mh
++host_makefile_frag=`cd $srcdir/../config;pwd`/default.mh
+ 
+ dnl We have to assign the same value to other variables because autoconf
+ dnl doesn't provide a mechanism to substitute a replacement keyword with
+-- 
+1.8.5.3
+
