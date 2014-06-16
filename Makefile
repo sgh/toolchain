@@ -47,8 +47,7 @@ versionfile:
 
 world: $(BUILD_DIR) versionfile $(TARGETS)
 	echo "Stripping toolchain"
-	ls ${TARGET_DIR}/bin | grep -v "$(TARGET)-gccbug" | parallel -i {} strip ${TARGET_DIR}/bin/{}
-	find ${TARGET_DIR} | parallel upx
+	ls ${TARGET_DIR}/bin | grep -v "$(TARGET)-gccbug" | xargs -I {} strip ${TARGET_DIR}/bin/{}
 	strip ${TARGET_DIR}/libexec/gcc/$(TARGET)/*/cc1
 	strip ${TARGET_DIR}/libexec/gcc/$(TARGET)/*/cc1plus
 	strip ${TARGET_DIR}/libexec/gcc/$(TARGET)/*/lto1
