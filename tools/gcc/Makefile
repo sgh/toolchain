@@ -22,9 +22,8 @@ $(GCC_DIR)_build: $(GCC_DIR)
 			--disable-__cxa_atexit \
 			--enable-languages="c,c++" \
 			--disable-nls \
-			--enable-obsolete \
+			--enable-plugin \
 			--with-newlib \
-			--with-system-zlib \
 			--with-headers=$(NEWLIB_DIR)/newlib/libc/include \
 			$(TARGET_OPTS) \
 			--enable-multilib );

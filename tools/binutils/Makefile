@@ -17,6 +17,7 @@ binutils_configure: $(BINUTILS_DIR)
 		--target=${TARGET} \
 		--prefix=${TARGET_DIR} \
 		--enable-target-opt-space \
+		--enable-plugins \
 		$(TARGET_OPTS) \
 		--disable-werror \
 		--enable-multilib; );

@@ -5,7 +5,7 @@ HOST = i686-linux-gnu
 HOST_CPUS = `getconf _NPROCESSORS_ONLN`
 
 # ARM-processors
-TARGET := arm-eabi
+TARGET := arm-none-eabi
 TARGET_OPTS = --enable-interwork
 
 # AVR32
